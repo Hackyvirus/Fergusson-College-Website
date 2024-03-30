@@ -210,10 +210,8 @@ app.post("/admin-registration", async (req, res) => {
 app.post('/teacher-login', async (req, res) => {
     const email_id = req.body.email
     const password = req.body.password
-    console.log(email_id,password)
     try {
         const result = await db.query("SELECT * FROM teachers WHERE email_id = $1 AND password =  $2", [email_id, password])
-        console.log(result.rows)
         const noticesResult = await db.query("SELECT notice FROM notices ORDER BY notice")
         const notices = noticesResult.rows.map(item => item.notice)
         const resultEmail = result.rows[0].email_id
@@ -238,7 +236,6 @@ app.post('/teacher-login', async (req, res) => {
 app.post('/student-login', async (req, res) => {
     const email_id = req.body.email
     const password = req.body.password
-    console.log(email_id,password)
     try {
         const result = await db.query("SELECT * FROM students WHERE email_id = $1 AND password =  $2", [email_id, password])
         const resultEmail = result.rows[0].email_id

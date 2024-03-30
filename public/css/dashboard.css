@@ -49,9 +49,10 @@ main {
   align-items: center;
 }
 #teacher-profile {
-  height: 140px;
-  cursor: grab;
-  width: 140px;
+	height: 140px;
+	cursor: grab;
+	width: 140px;
+	border-radius: 50%;
 }
 .right-box {
   width: 50%;
