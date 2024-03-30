@@ -290,7 +290,7 @@
         e.preventDefault();
         const message = messageInput.value.trim();
         if (message !== "") {
-          const sender = "Admin"; 
+          const sender = userName; 
           socket.emit("chat message", { sender, message });
           messageInput.value = "";
         }
