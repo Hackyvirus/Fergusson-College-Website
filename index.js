@@ -14,7 +14,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express()
 const server = http.createServer(app);
 const io = new Server(server);
-const port = 4000;
 
 const sslOptions = {
     rejectUnauthorized: false,
@@ -38,7 +37,6 @@ const adminCodes = [1234, 4321, 5678, 1010]
 
 // socket connection 
 io.on('connection', (socket) => {
-    console.log('User Connected:', socket.id);
     socket.emit('all chats', chats);
     socket.on('chat message', (data) => {
         const { sender, message } = data;
@@ -46,7 +44,6 @@ io.on('connection', (socket) => {
         io.emit('chat message', { sender, message });
     });
     socket.on('disconnect', () => {
-        console.log('User disconnected:', socket.id);
     });
 });
 
