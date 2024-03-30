@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/login.css" />
+    <title>Admin Registration</title>
+    <style>
+      .form-item {
+        margin-bottom: 10px;
+      }
+      .toggle-password {
+        cursor: pointer;
+        position: relative;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- header  -->
+    <%- include('../partials/header.ejs'); %>
+    <!-- the main section  -->
+    <main>
+      <h2 id="title">Fergusson College Admin Registration</h2>
+      <% if(locals.userExist){ %>
+        <p style="text-align: center;"><%= userExist %></p>
+        <% } %>
+      <div class="register-teacher">
+        <form
+          onsubmit="return validateForm()"
+          id="teacher-login-form"
+          action="/admin-registration"
+          method="post"
+          autocomplete="off"
+        >
+          <div class="form-item">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="fname" />
+          </div>
+          <div class="form-item">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lname" />
+          </div>
+          <div class="form-item">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" />
+          </div>
+          <div class="form-item">
+            <label for="email">Email ID</label>
+            <input type="email" id="email" name="email" />
+          </div>
+          <div class="form-item">
+            <label for="phone">Contact</label>
+            <input
+              maxlength="10"
+              type="text"
+              id="phone"
+              name="phone"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+          </div>
+          <div class="form-item">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" />
+            <span class="toggle-password" id="togglePassword">&#128065;</span>
+          </div>
+          <div class="form-item">
+            <label for="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+            />
+            <span class="toggle-password" id="togglePassword2">&#128065;</span>
+          </div>
+          <input id="submit-teacher-form" type="submit" value="submit" />
+        </form>
+      </div>
+    </main>
+    <script>
+       const togglePasswordButton = document.getElementById("togglePassword");
+      const togglePasswordButton2 = document.getElementById("togglePassword2");
+      const passwordInput = document.getElementById("password");
+      const passwordInput2 = document.getElementById("confirmPassword");
+
+      togglePasswordButton.addEventListener("click", function () {
+        const type =
+          passwordInput.getAttribute("type") === "password"
+            ? "text"
+            : "password";
+        passwordInput.setAttribute("type", type);
+        // Change the eye icon based on visibility
+        togglePasswordButton.innerHTML =
+          type === "password" ? "&#128065;" : "&#128064;";
+      });
+
+      togglePasswordButton2.addEventListener("click", function () {
+        const type =
+          passwordInput2.getAttribute("type") === "password"
+            ? "text"
+            : "password";
+        passwordInput2.setAttribute("type", type);
+        // Change the eye icon based on visibility
+        togglePasswordButton2.innerHTML =
+          type === "password" ? "&#128065;" : "&#128064;";
+      });
+
+      const checkTeacher = document.getElementById("check-teacher");
+      const cros = document.getElementById("cros");
+      cros.addEventListener("click", () => {
+        checkTeacher.style.scale = 0;
+        document
+          .querySelectorAll(".layer-active")[0]
+          .classList.remove("layer-active");
+      });
+      function validateForm() {
+        const fname = document.getElementById("fname").value.trim();
+        const lname = document.getElementById("lname").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const password = document.getElementById("password").value;
+        const dob = document.getElementById("dob").value;
+        if (fname === "" || lname === "") {
+          alert("Please enter your first name and last name.");
+          return false;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert("Please enter a valid email address.");
+          return false;
+        }
+        const phoneRegex = /^\d{10}$/;
+        if (!phoneRegex.test(phone)) {
+          alert("Please enter a valid 10-digit phone number.");
+          return false;
+        }
+        const dobYear = new Date(dob).getFullYear();
+        console.log(dobYear);
+        console.log(dobYear == 2010);
+        if (dobYear >= 2010) {
+          alert("Date of birth should be before 2010.");
+          return false;
+        }
+        if (password.length < 8) {
+          alert("Password must be at least 8 characters long.");
+          return false;
+        }
+        return true;
+      }
+    </script>
+  </body>
+</html>

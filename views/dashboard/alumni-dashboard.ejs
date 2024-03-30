@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alumni Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <style>
+        #cros2 {
+    	position: absolute;
+	right: 30px;
+	top: 1px;
+	cursor: pointer;
+	color: #111010;
+	font-size: 40px;
+
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h2>Admin Dashboard</h2>
+      <a id="logOut" href="/"><button>Log Out</button></a>
+    </header>
+
+    <!-- teacher Details  -->
+    <main>
+      <div class="left-box">
+        <img id="teacher-profile" src="assets/img/aman.png" alt="" />
+        <ul>
+          <li>
+            <h5>Name</h5>
+            :
+            <p id="userName"><%= fullname %></p>
+          </li>
+          <li>
+            <h5>Email</h5>
+            :
+            <p><%= email %></p>
+          </li>
+          <li>
+            <h5>Contact</h5>
+            :
+            <p><%= phone_no %></p>
+          </li>
+          <li>
+            <h5>Date of Birth</h5>
+            :
+            <p><%= dob %></p>
+          </li>
+        </ul>
+      </div>
+      <div class="right-box"></div>
+    </main>
+
+    <!-- Alumni  -->
+    <div id="teache-area">
+      <div class="teacher-row">
+        <div id="Announcements" class="teacher-box">
+          <img src="assets/icons/mice.png" alt="" />
+          <p>View Announcements/Updates</p>
+        </div>
+        <div id="upload" class="teacher-box">
+          <img src="assets/icons/upload.png" alt="" />
+          <p>View Study Material</p>
+        </div>
+      </div>
+      <div class="teacher-row">
+        <div id="chating" class="teacher-box">
+          <img src="assets/icons/chat.png" alt="" />
+          <p>Chat Box</p>
+        </div>
+        <div id="changeProfile" class="teacher-box">
+          <img src="assets/icons/edit.png" alt="" />
+          <p>Change Profile</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- notice  -->
+    <div class="" id="layer"></div>
+    <div id="notice" class="notices">
+      <div id="cros">&times;</div>
+      <h2 class="title">Notices</h2>
+    <!-- main container  -->
+      <div class="notice-container">
+        <!-- view Notices  -->
+        <div id="notice-container" class="notice-container">
+          <ul>
+            <% notices.forEach(function(item,index){ %>
+            <li><%= item %></li>
+            <% }) %>
+          </ul>
+        </div>
+
+        </div>
+      </div>
+
+
+    <div id="materials" class="materials">
+      <div id="cros">&times;</div>
+      <h2 class="title">Materials</h2>
+    <!-- main container  -->
+      <div class="material-container">
+        <!-- view Notices  -->
+        <div id="material-container" class="material-container">
+          <div id="cros2">&times;</div>
+          <ul>
+            <% materialResult.map(item => { %>
+              <li style="text-align: center;"><a target="_blank" style="text-align: center;" href="<%= item.material %>"><%=  item.name  %></a></li>
+          <% }) %>
+          </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Profile  -->
+    <div class="" id="layer4"></div>
+    <div id="changeProfileContainer" class="changeProfileContainer">
+      <div id="cros4">&times;</div>
+      
+      <form
+      onsubmit="return validateForm3()"
+        id="updateProfile"
+        action="/update-alumnis"
+        method="post"
+        autocomplete="off"
+      >
+      <div class="form-item">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="fname" required/>
+      </div>
+      <div class="form-item">
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lname" required />
+      </div>
+    
+      <div class="form-item">
+        <label for="email">Email ID</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div class="form-item">
+        <label for="phone">Contact</label>
+        <input
+          maxlength="10"
+          type="text"
+          id="phone"
+          name="phone"
+          inputmode="numeric"
+          pattern="[0-9]*" required
+        />
+      </div>
+      <div class="form-item">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" required />
+      </div>
+      
+      <div class="form-item">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required />
+        <span class="toggle-password" id="togglePassword">&#128065;</span>
+      </div>
+      <div class="form-item">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+        required
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+        />
+        <span class="toggle-password" id="togglePassword2">&#128065;</span>
+      </div>
+        <input
+        onclick="return validateForm3()"
+          id="submit-profile-form"
+          type="submit"
+          value="submit"
+        />
+      </form>
+    </div>
+  <!-- Chating Functionality -->
+  <div class="" id="layer5"></div>
+  <div id="chatingProfile" class="chatingProfile">
+    <div id="cros5">&times;</div>
+   
+    <ul class="chatbox" id="chat-messages"></ul>
+    <form class="sendChat" id="chat-form">
+      <input type="text" id="message-input" autocomplete="off" />
+      <img  type="submit" id="sendBTN" src="assets/img/send.png" alt="send">
+    </form>
+   
+  </div>
+  </div>
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+  <script>
+    const userName= document.getElementById('userName').innerText
+    // socket server
+    const socket = io();
+    const chatMessages = document.getElementById("chat-messages");
+    const main = document.createElement('div');
+    socket.on("all chats", (chats) => {
+      chats.forEach((data) => {
+        const { sender, message } = data;
+        const li = document.createElement("li");
+        li.textContent = `${sender}: ${message}`;
+        chatMessages.appendChild(li);
+      });
+    });
+
+    socket.on("chat message", (data) => {
+      const { sender, message } = data;
+      const li = document.createElement("li");
+      li.textContent = `${sender}: ${message}`;
+      chatMessages.appendChild(li);
+    });
+
+    const chatForm = document.getElementById("chat-form");
+    const messageInput = document.getElementById("message-input");
+    const sendBTN = document.getElementById('sendBTN')
+
+    sendBTN.addEventListener('click',(e)=>{
+      e.preventDefault();
+      const message = messageInput.value.trim();
+      if (message !== "") {
+        const sender = userName;
+        socket.emit("chat message", { sender, message }); 
+        messageInput.value = "";
+      }
+    })
+
+    chatForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const message = messageInput.value.trim();
+      if (message !== "") {
+        const sender = "Teacher"; 
+        socket.emit("chat message", { sender, message }); 
+        messageInput.value = "";
+      }
+    });
+    // chating Functionality 
+    const chatBTN = document.getElementById('chating').addEventListener('click',()=>{
+      document.getElementById('layer5').classList.add('layer-active5')
+      document.getElementById('chatingProfile').classList.remove('chatingProfile')
+      document.getElementById('chatingProfile').classList.add('chatingProfileActive')
+    })
+    document.getElementById('cros5').addEventListener('click',()=>{
+      document.getElementById('layer5').classList.remove('layer-active5')
+      document.getElementById('chatingProfile').classList.remove('chatingProfileActive')
+      document.getElementById('chatingProfile').classList.add('chatingProfile')
+    })
+
+       const togglePasswordButton = document.getElementById("togglePassword");
+      const togglePasswordButton2 = document.getElementById("togglePassword2");
+      const passwordInput = document.getElementById("password");
+      const passwordInput2 = document.getElementById("confirmPassword");
+
+      togglePasswordButton.addEventListener("click", function () {
+        const type =
+          passwordInput.getAttribute("type") === "password"
+            ? "text"
+            : "password";
+        passwordInput.setAttribute("type", type);
+        togglePasswordButton.innerHTML =
+          type === "password" ? "&#128065;" : "&#128064;";
+      });
+
+      togglePasswordButton2.addEventListener("click", function () {
+        const type =
+          passwordInput2.getAttribute("type") === "password"
+            ? "text"
+            : "password";
+        passwordInput2.setAttribute("type", type);
+        togglePasswordButton2.innerHTML =
+          type === "password" ? "&#128065;" : "&#128064;";
+      });
+      // update Profile 
+      const changeProfileBTN =  document.getElementById('changeProfile')
+      document.getElementById('cros4').addEventListener('click',()=>{
+        document.getElementById('layer4').classList.remove('layer-active4')
+        document.getElementById('changeProfileContainer').classList.remove('changeProfileContainerActive')
+        document.getElementById('changeProfileContainer').classList.add('changeProfileContainer')
+      })
+      changeProfileBTN.addEventListener('click',()=>{
+        document.getElementById('layer4').classList.add('layer-active4')
+        document.getElementById('changeProfileContainer').classList.remove('changeProfileContainer')
+        document.getElementById('changeProfileContainer').classList.add('changeProfileContainerActive')
+      })
+      function validateForm3() {
+
+const fname = document.getElementById("fname").value.trim();
+const lname = document.getElementById("lname").value.trim();
+const email = document.getElementById("email").value.trim();
+const phone = document.getElementById("phone").value.trim();
+const dob = document.getElementById("dob").value;
+const password = document.getElementById("password").value;
+const confirmPassword = document.getElementById("confirmPassword").value;
+
+if (!fname || !lname || !dob  || !phone || !password || !confirmPassword) {
+  alert("Please fill in all the required fields.");
+  return false;
+}
+
+if (fname.length >= 10 || lname.length >= 10) {
+  alert("First name and last name should be less than 10 characters.");
+  return false;
+}
+
+
+
+const dobYear = new Date(dob).getFullYear();
+if (dobYear >= 2010) {
+  alert("Date of birth should be before 2010.");
+  return false;
+}
+
+const phoneRegex = /^\d{10}$/;
+if (!phoneRegex.test(phone)) {
+  alert("Please enter a valid 10-digit phone number.");
+  return false;
+}
+
+if (password.length < 8) {
+  alert("Password must be at least 8 characters long.");
+  return false;
+}
+
+if (password !== confirmPassword) {
+  alert("Password and Confirm password are not the same");
+  return false;
+}
+
+return true;
+}
+      // Show Notices and Upload Uptions
+      const changeBTN = document.getElementById("upload");
+      changeBTN.addEventListener("click", () => {
+        document.getElementById("layer").classList.add("layer-active");
+        document.getElementById("materials").classList.remove("materials");
+        document.getElementById("materials").classList.add("active-materials");
+      });
+      document.getElementById("cros2").addEventListener("click", () => {
+        document.getElementById("layer").classList.remove("layer-active");
+        document.getElementById("materials").classList.remove("active-materials");
+        document.getElementById("materials").classList.add("materials");
+      });
+      // Show Notices
+      const Announcement = document.getElementById("Announcements");
+      Announcement.addEventListener("click", () => {
+        document.getElementById("layer").classList.add("layer-active");
+        document.getElementById("notice").classList.remove("notices");
+        document.getElementById("notice").classList.add("active-notices");
+      });
+      document.getElementById("cros").addEventListener("click", () => {
+        document.getElementById("layer").classList.remove("layer-active");
+        document.getElementById("notice").classList.remove("active-notices");
+        document.getElementById("notice").classList.add("notices");
+      });
+     
+    </script>
+  </body>
+</html>

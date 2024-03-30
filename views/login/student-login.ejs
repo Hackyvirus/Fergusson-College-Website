@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/login.css" />
+    <title>Document</title>
+    <style>
+      #teacher-login-form {
+        height: 50svh;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- header  -->
+    <%- include('../partials/header.ejs'); %>
+    <!-- login form  -->
+    <h2>Student Login</h2>
+    <% if(locals.userExist){ %>
+      <p style="text-align: center"><%= userExist %></p>
+      <% } %>
+    <form
+      id="teacher-login-form"
+      action="/student-login"
+      method="post"
+      autocomplete="off"
+    >
+      <div class="form-item">
+        <label for="email">Email ID</label>
+        <input type="email" id="email" name="email" />
+      </div>
+      <div class="form-item">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+      </div>
+      <input id="submit-teacher-form" type="submit" value="submit" />
+    </form>
+  </body>
+</html>

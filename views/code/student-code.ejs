@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/login.css" />
+    <title>Teacher Login</title>
+  </head>
+  <body>
+    <!-- header  -->
+    <%- include('../partials/header.ejs'); %>
+    <!-- the main section  -->
+    <main>
+      <h2 id="title">Fergusson College Student Registration</h2>
+      <div id="check-teacher">
+        <form autocomplete="off" id="check-t" action="/check-student" method="post">
+          <div id="cros">&times;</div>
+          <label id="label" for="sCode">Enter Your Security Code</label>
+          <input type="text" name="sCode" id="sCode" />
+          <input id="submit" type="submit" value="submit" />
+        </form>
+      </div>
+      <div class="layer-active" id="layer"></div>
+    </main>
+    <script>
+      const checkTeacher = document.getElementById("check-teacher");
+      const cros = document.getElementById("cros");
+      cros.addEventListener("click", () => {
+        checkTeacher.style.scale = 0;
+        document
+          .querySelectorAll(".layer-active")[0]
+          .classList.remove("layer-active");
+      });
+    </script>
+  </body>
+</html>
