@@ -70,12 +70,12 @@
           </div>
           <div class="form-item">
             <label for="class">Class</label>
-            <input
-              type="text"
-              id="class"
-              name="class"
-              placeholder="FY CS/ SY CS etc."
-            />
+            <select id="class" name="class" required>
+              <option value="" disabled selected>Select a class</option>
+              <option value="FY CS">FY CS</option>
+              <option value="SY CS">SY CS</option>
+              <option value="TY CS">TY CS</option>
+            </select>
           </div>
           <div class="form-item">
             <label for="password">Password</label>

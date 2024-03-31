@@ -136,10 +136,15 @@
             method="post"
             autocomplete="off"
           >
-            <div class="form-item">
-              <label for="class2">For Class</label>
-              <input type="text" id="class2" autocomplete="off" name="class2" />
-            </div>
+          <div class="form-item">
+            <label for="class2">Class</label>
+            <select id="class2" name="class2" required>
+              <option value="" disabled selected>Select a class</option>
+              <option value="FY CS">FY CS</option>
+              <option value="SY CS">SY CS</option>
+              <option value="TY CS">TY CS</option>
+            </select>
+          </div>
             <div class="form-item">
               <label for="materialText">Material</label>
               <input

@@ -522,10 +522,34 @@ main {
   padding: 5px;
   cursor: pointer;
 }
+
+
+#class{
+	background: yellow;
+	outline: 0;
+	border: 0;
+	width: 50%;
+	border-radius: 7px;
+	padding: 4px 16px;
+	font-size: 16px;
+  text-align: center;
+  margin: auto;
+}
+#class2 {
+	background: yellow;
+	outline: 0;
+	border: 0;
+	width: 50%;
+	border-radius: 7px;
+	padding: 4px 16px;
+	font-size: 16px;
+  text-align: center;
+  margin: auto;
+}
 .form-item,
 label {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   width: 50%;
   background: #f1ca00;
   border-radius: 5px;

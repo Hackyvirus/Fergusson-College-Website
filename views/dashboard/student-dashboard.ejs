@@ -165,13 +165,14 @@
       </div>
       <div class="form-item">
         <label for="class">Class</label>
-        <input
-          type="text"
-          id="class"
-          name="class"
-          placeholder="FY CS/ SY CS etc." required
-        />
+        <select id="class" name="class" required>
+          <option value="" disabled selected>Select a class</option>
+          <option value="FY CS">FY CS</option>
+          <option value="SY CS">SY CS</option>
+          <option value="TY CS">TY CS</option>
+        </select>
       </div>
+      
       <div class="form-item">
         <label for="password">Password</label>
         <input type="password" name="password" id="password" required />
@@ -311,7 +312,7 @@
   const password = document.getElementById("password").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
   const currentClass = document.getElementById("class").value;
-
+console.log(currentClass)
   if (!fname || !lname || !roleNumber || !dob || !currentClass || !phone || !password || !confirmPassword) {
     alert("Please fill in all the required fields.");
     return false;
@@ -331,15 +332,6 @@
   const dobYear = new Date(dob).getFullYear();
   if (dobYear >= 2010) {
     alert("Date of birth should be before 2010.");
-    return false;
-  }
-
-  if (
-    currentClass !== "FY CS" &&
-    currentClass !== "SY CS" &&
-    currentClass !== "TY CS"
-  ) {
-    alert("Please enter Class in FY CS, SY CS, or TY CS");
     return false;
   }
 

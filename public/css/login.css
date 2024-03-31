@@ -196,7 +196,15 @@ h2{
   margin-top: 20px;
   
 }
-
+#class {
+	background: yellow;
+	outline: 0;
+	border: 0;
+	width: 50%;
+	border-radius: 7px;
+	padding: 4px 16px;
+	font-size: 16px;
+}
 #teacher-login-form {
 	width: 800px;
 	height: 800px;
