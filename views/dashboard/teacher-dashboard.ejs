@@ -108,6 +108,7 @@
               <option value="FY CS">FY CS</option>
               <option value="SY CS">SY CS</option>
               <option value="TY CS">TY CS</option>
+              <option value="general">General Notice</option>
             </select>
           </div>
             <div class="form-item">
@@ -147,6 +148,7 @@
               <option value="FY CS">FY CS</option>
               <option value="SY CS">SY CS</option>
               <option value="TY CS">TY CS</option>
+              <option value="general">General Material</option>
             </select>
           </div>
             <div class="form-item">
@@ -434,7 +436,7 @@ return true;
         const currentClass = document.getElementById('class').value;
         const notice = document.getElementById('noticeText').value.trim();
         if (currentClass !== 'FY CS' && currentClass !== 'SY CS' && currentClass !== 'TY CS') {
-          alert('Please enter Class in FY CS, SY CS, or TY CS');
+          alert('Please enter Class in FY CS, SY CS,TY CS or General');
           return false;
         }
         return true;

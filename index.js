@@ -275,7 +275,7 @@ app.post('/alumni-login', async (req, res) => {
         const current_class = result.rows[0].class
         const noticesResult = await db.query("SELECT notice FROM notices WHERE class = 'general' ORDER BY notice ")
         const notices = noticesResult.rows.map(item => item.notice)
-        let materialResult = await db.query("SELECT * FROM materials WHERE class = $1 ORDER BY material",[current_class])
+        let materialResult = await db.query("SELECT * FROM materials WHERE class = 'general' ORDER BY material")
         materialResult = materialResult.rows
         if (email_id === resultEmail && password === resultPass) {
             const FullName = result.rows[0].first_name + ' ' + result.rows[0].last_name
