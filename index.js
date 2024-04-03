@@ -240,14 +240,13 @@ app.post('/student-login', async (req, res) => {
         const current_class = result.rows[0].class
         const noticesResult = await db.query("SELECT notice FROM notices WHERE class = $1 OR  class = 'general' ORDER BY notice ", [current_class])
         const notices = noticesResult.rows.map(item => item.notice)
-        let materialResult = await db.query("SELECT * FROM materials WHERE class = $1 ORDER BY material", [current_class])
+        let materialResult = await db.query("SELECT * FROM materials WHERE class = $1 AND class = 'general' ORDER BY material", [current_class])
         materialResult = materialResult.rows
         const materials = materialResult.map(item => item.material)
         const materialsName = materialResult.map(item => item.class)
   
         if (email_id === resultEmail && password === resultPass) {
             const current_class = result.rows[0].class
-            console.log(current_class)
             const FullName = result.rows[0].first_name + ' ' + result.rows[0].last_name
             const Email = result.rows[0].email_id
             const phone = result.rows[0].phone_no
