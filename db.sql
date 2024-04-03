@@ -49,4 +49,4 @@ CREATE TABLE notices (
     email_id VARCHAR(30),
     notice VARCHAR(250),
     class VARCHAR(10)
-)
+);
