@@ -44,7 +44,7 @@ CREATE TABLE alumni (
     password VARCHAR (30)
 )
 
-CREATE TABLE materials (email_id VARCHAR(30),material VARCHAR(50),class VARCHAR(10),name VARCHAR(10));
+CREATE TABLE materials (email_id VARCHAR(30),material VARCHAR(250),class VARCHAR(10),name VARCHAR(250));
 CREATE TABLE notices (
     email_id VARCHAR(30),
     notice VARCHAR(250),
