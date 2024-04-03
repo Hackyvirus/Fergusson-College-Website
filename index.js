@@ -246,6 +246,8 @@ app.post('/student-login', async (req, res) => {
         const materialsName = materialResult.map(item => item.class)
   
         if (email_id === resultEmail && password === resultPass) {
+            const current_class = result.rows[0].class
+            console.log(current_class)
             const FullName = result.rows[0].first_name + ' ' + result.rows[0].last_name
             const Email = result.rows[0].email_id
             const phone = result.rows[0].phone_no
@@ -254,7 +256,7 @@ app.post('/student-login', async (req, res) => {
             const date = DO.getDate()
             const year = DO.getFullYear()
             const DOB = date + '/' + (month + 1) + '/' + year
-            res.render('dashboard/student-dashboard.ejs', { fullname: FullName, email: Email, phone_no: phone, dob: DOB, notices: notices, material: materials, materialsName: materialsName, materialResult: materialResult })
+            res.render('dashboard/student-dashboard.ejs', { fullname: FullName, email: Email, phone_no: phone, dob: DOB, notices: notices, material: materials, materialsName: materialsName, materialResult: materialResult,current_class:current_class })
         } else {
             res.redirect('/student-login')
         }

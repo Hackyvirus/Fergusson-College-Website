@@ -37,6 +37,9 @@ a {
   text-align: center;
   text-decoration: none;
 }
+.row2 a{
+  color: #fff;
+}
 
 .home-ul {
   width: 582px;
@@ -263,6 +266,7 @@ main {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 150px;
+  border-radius: 50%;
 }
 #first-cote {
   position: relative;
@@ -375,20 +379,20 @@ main {
 	font-weight: 300;
 	line-height: 30px;
 	position: relative;
-	top: -15%;
-	width: 48%;
+	top: -16%;
+	width: 54%;
 	text-align: right;
-	right: -45%;
+	right: -40%;
 }
 .even-person h2 {
 	font-family: Poppins;
 	font-weight: 300;
 	line-height: 30px;
 	position: relative;
-	top: 15%;
-	width: 48%;
+	top: 18%;
+	width: 72%;
 	text-align: right;
-	right: -45%;
+	right: -20%;
 }
 .even-person p {
 	font-family: Poppins;

@@ -235,7 +235,7 @@ label {
   width: 450px;
   font-size: large;
   padding-left: 5px;
-  background: transparent;
+  background: #fff;
   border: 0;
 }
 .form-item > input:focus {

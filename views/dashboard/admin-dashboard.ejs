@@ -124,7 +124,6 @@
             <input type="hidden" name="dob" value="<%= dob %>" />
             <input type="hidden" name="phone_no" value="<%= phone_no %>" />
             <input
-              onclick="return validateForm()"
               id="submit-notice-form"
               type="submit"
               value="submit"
@@ -140,6 +139,7 @@
             action="/admin-material"
             method="post"
             autocomplete="off"
+            onsubmit="return validateForm2()"
           >
           <div class="form-item">
             <label for="class2">Class</label>
@@ -459,9 +459,17 @@ return true;
         document.getElementById("upload-notice-click-2").classList.remove("upload-notice-click-active");
         document.getElementById("upload-notice-click-2").classList.add("upload-notice-click");
       });
+      function validateForm() {
+        const currentClass = document.getElementById('class').value;
+        const notice = document.getElementById('materialText').value.trim();
+        if (currentClass !== 'FY CS' && currentClass !== 'SY CS' && currentClass !== 'TY CS' !== 'general') {
+          alert('Please enter Class in FY CS, SY CS, or TY CS or general');
+          return false;
+        }
+        return true;
+      }
       function validateForm2() {
         const currentClass = document.getElementById('class2').value;
-        const notice = document.getElementById('materialText').value.trim();
         if (currentClass !== 'FY CS' && currentClass !== 'SY CS' && currentClass !== 'TY CS' !== 'general') {
           alert('Please enter Class in FY CS, SY CS, or TY CS or general');
           return false;

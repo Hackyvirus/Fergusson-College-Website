@@ -101,10 +101,15 @@
             method="post"
             autocomplete="off"
           >
-            <div class="form-item">
-              <label for="class">For Class</label>
-              <input type="text" id="class" autocomplete="off" name="class" />
-            </div>
+          <div class="form-item">
+            <label for="class">Class</label>
+            <select id="class" name="class" required>
+              <option value="" disabled selected>Select a class</option>
+              <option value="FY CS">FY CS</option>
+              <option value="SY CS">SY CS</option>
+              <option value="TY CS">TY CS</option>
+            </select>
+          </div>
             <div class="form-item">
               <label for="noticeText">Notice</label>
               <input
@@ -119,7 +124,6 @@
             <input type="hidden" name="dob" value="<%= dob %>" />
             <input type="hidden" name="phone_no" value="<%= phone_no %>" />
             <input
-              onclick="return validateForm()"
               id="submit-notice-form"
               type="submit"
               value="submit"

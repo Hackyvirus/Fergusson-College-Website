@@ -1,3 +1,7 @@
+CREATE USER hacky WITH PASSWORD '3XhtsXaG0L6ycK3rEyrEBKZwgD7aZKIb';
+
+CREATE DATABASE hacky;
+
 CREATE TABLE students (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(30),
