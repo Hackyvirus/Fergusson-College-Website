@@ -440,15 +440,7 @@ return true;
         document.getElementById("upload-notice-click").classList.remove("upload-notice-click-active");
         document.getElementById("upload-notice-click").classList.add("upload-notice-click");
       });
-      function validateForm() {
-        const currentClass = document.getElementById('class').value;
-        const notice = document.getElementById('noticeText').value.trim();
-        if (currentClass !== 'FY CS' && currentClass !== 'SY CS' && currentClass !== 'TY CS') {
-          alert('Please enter Class in FY CS, SY CS, or TY CS');
-          return false;
-        }
-        return true;
-      }
+
       // Upload Material
         const uploadMaterial = document.getElementById("UM");
         uploadMaterial.addEventListener('click',()=>{
@@ -464,7 +456,7 @@ return true;
       function validateForm() {
         const currentClass = document.getElementById('class').value;
         const notice = document.getElementById('materialText').value.trim();
-        if (currentClass !== 'FY CS' && currentClass !== 'SY CS' && currentClass !== 'TY CS' !== 'general') {
+        if (currentClass !== 'FY CS' && currentClass !== 'SY CS' && currentClass !== 'TY CS' && currentClass !== 'general') {
           alert('Please enter Class in FY CS, SY CS, or TY CS or general');
           return false;
         }
@@ -472,7 +464,7 @@ return true;
       }
       function validateForm2() {
         const currentClass = document.getElementById('class2').value;
-        if (currentClass !== 'FY CS' && currentClass !== 'SY CS' && currentClass !== 'TY CS' !== 'general') {
+        if (currentClass !== 'FY CS' && currentClass !== 'SY CS' && currentClass !== 'TY CS' && currentClass !== 'general') {
           alert('Please enter Class in FY CS, SY CS, or TY CS or general');
           return false;
         }

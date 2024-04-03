@@ -435,7 +435,7 @@ return true;
         function validateForm() {
         const currentClass = document.getElementById('class').value;
         const notice = document.getElementById('noticeText').value.trim();
-        if (currentClass !== 'FY CS' && currentClass !== 'SY CS' && currentClass !== 'TY CS') {
+        if (currentClass !== 'FY CS' && currentClass !== 'SY CS' && currentClass !== 'TY CS' && currentClass !== 'general') {
           alert('Please enter Class in FY CS, SY CS,TY CS or General');
           return false;
         }
@@ -456,7 +456,7 @@ return true;
         function validateForm2() {
         const currentClass = document.getElementById('class2').value;
         const notice = document.getElementById('materialText').value.trim();
-        if (currentClass !== 'FY CS' && currentClass !== 'SY CS' && currentClass !== 'TY CS' !== 'general') {
+        if (currentClass !== 'FY CS' && currentClass !== 'SY CS' && currentClass !== 'TY CS' && currentClass !== 'general') {
           alert('Please enter Class in FY CS, SY CS, or TY CS or general');
           return false;
         }
